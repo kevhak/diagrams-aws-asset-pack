@@ -1,0 +1,7 @@
+{
+  "terminal.integrated.env.osx": {
+    "EDITOR": "code -w"
+  },
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv",
+  "python.terminal.executeInFileDir": true
+}

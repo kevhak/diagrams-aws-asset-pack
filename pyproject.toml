@@ -1,0 +1,14 @@
+[project]
+name = "diagrams-aws-asset-pack"
+version = "0.5.0"
+description = "Replace AWS icons in diagrams Python package with updated AWS Icons"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "diagrams>=0.24.4",
+    "pillow>=11.3.0",
+]
+
+# https://docs.astral.sh/ruff/settings/
+[tool.ruff.lint]
+extend-select = ["I"]

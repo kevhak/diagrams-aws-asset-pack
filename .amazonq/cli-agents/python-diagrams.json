@@ -1,0 +1,34 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "python-diagrams",
+  "description": "create architecture diagrams using Python",
+  "prompt": "You are an expert in architecture diagrams that match AWS best practices.",
+  "mcpServers": {
+      "awslabs.aws-diagram-mcp-server": {
+        "command": "sh",
+        "args": [
+          "-c",
+          "PYTHONPATH=$(ls -d .venv/lib/python*/site-packages | head -1) uvx awslabs.aws-diagram-mcp-server"
+        ],
+        "env": {
+          "FASTMCP_LOG_LEVEL": "ERROR"
+        },
+        "autoApprove": [],
+        "disabled": false
+      }
+  },
+  "tools": [
+    "*"
+  ],
+  "toolAliases": {},
+  "allowedTools": [
+    "fs_read",
+    "@awslabs.aws-diagram-mcp-server"
+  ],
+  "resources": [
+    "file://.amazonq/rules/python-diagrams.md"
+  ],
+  "hooks": {},
+  "toolsSettings": {},
+  "useLegacyMcpJson": false
+}
