@@ -46,7 +46,7 @@ Updated to use this asset pack (`uv run ec2_to_s3_updated.py`).
 First review the HTML comparison page (`image_comparison.html`) to see the changes.  Then overlay the updated images into your `.venv`, by unzipping the `dist/site-packages.zip`.
 
   ```shell
-  unzip -o dist/site-packages.zip -d "$(python -c "import site; print(site.getsitepackages()[0])")/"
+  unzip -o dist/site-packages.zip -d "$(python -c "import site; print(site.getsitepackages()[0])")"
   ```
 
 ## Amazon Q Developer CLI
@@ -79,7 +79,7 @@ zip -r dist/site-packages.zip resources/
 To overlay the updated images into your `.venv` (this "breaks" the `image_comparison.html` display if you ran `uv run generate_html.py` instead of `uvx --with diagrams --with pillow python generate_html.py`).
 
 ```shell
-unzip -o dist/site-packages.zip -d "$(python -c "import site; print(site.getsitepackages()[0])")/"
+unzip -o dist/site-packages.zip -d "$(python -c "import site; print(site.getsitepackages()[0])")"
 ```
 
 To restore the original images from the `diagrams` package (this "fixes" the `image_comparison.html` display if you ran `uv run generate_html.py`):

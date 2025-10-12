@@ -1,6 +1,16 @@
 import os
 
+from diagrams.aws import general
+
 AWS_DARK = os.getenv("AWS_DARK", "").lower() in ("1", "true")
+
+if AWS_DARK:
+    for name in dir(general):
+        cls = getattr(general, name)
+        if hasattr(cls, '_icon') and cls._icon and cls._icon.endswith('.png'):  # pylint: disable=protected-access
+            dark_icon = cls._icon.replace('.png', '-dark.png')  # pylint: disable=protected-access
+            # Modify the original module
+            setattr(general, name, type(name, (cls,), {'_icon': dark_icon}))
 
 if AWS_DARK:
     AWS_BG_COLOR = "#000000"

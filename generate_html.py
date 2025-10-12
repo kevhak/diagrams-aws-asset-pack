@@ -58,18 +58,26 @@ with open("aws_icons_mapping.csv", "r") as f:
         html += f'''            <tr>
                 <td>{module}.{class_name}</td>
                 <td><img src="{site.getsitepackages()[0]}/resources/aws/{module_path}/{diagrams_file}" alt="{diagrams_file}" onerror="this.style.display='none'"><br>{get_image_dims(f"{site.getsitepackages()[0]}/resources/aws/{module_path}/{diagrams_file}")}</td>
-                <td>'''
+                '''
 
         if aws_file == "NOT_FOUND":
-            html += '<span class="not-found">NOT_FOUND</span>'
+            html += '<td><span class="not-found">NOT_FOUND</span>'
         else:
+            if aws_file.endswith("_Dark.svg") or aws_file.endswith("_Dark_64.svg"):
+                html += '<td style="background-color: black; color: white">'
+            else:
+                html += '<td>'
             html += f'<img src="assets/{aws_file}" alt="{aws_file}" onerror="this.style.display=\'none\'"><br>{get_image_dims(f"assets/{aws_file}")}'
 
         html += "</td>\n                "
         if aws_file == "NOT_FOUND":
             html += "<td>&nbsp;</span></td>"
         else:
-            html += f'<td><img src="resources/aws/{module_path}/{diagrams_file}" alt="{diagrams_file}" onerror="this.style.display=\'none\'"><br>{get_image_dims(f"resources/aws/{module_path}/{diagrams_file}")}</td>'
+            if diagrams_file.endswith("-dark.png"):
+                html += '<td style="background-color: black; color: white">'
+            else:
+                html += '<td>'
+            html += f'<img src="resources/aws/{module_path}/{diagrams_file}" alt="{diagrams_file}" onerror="this.style.display=\'none\'"><br>{get_image_dims(f"resources/aws/{module_path}/{diagrams_file}")}</td>'
 
         html += "            </tr>\n"
 
