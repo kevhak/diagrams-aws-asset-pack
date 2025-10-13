@@ -41,6 +41,10 @@ Updated to use this asset pack (`uv run ec2_to_s3_updated.py`).
 
 ![EC2 to S3 Connection Architecture (updated)](/examples/ec2_to_s3_connection_architecture_(updated).png)
 
+Alternate version using dark mode (`AWS_DARK=1 uv run ec2_to_s3_updated.py`).
+
+![EC2 to S3 Connection Architecture (updated)](/examples/ec2_to_s3_connection_architecture_(updated,_dark).png)
+
 ## Install
 
 First review the HTML comparison page (`image_comparison.html`) to see the changes.  Then overlay the updated images into your `.venv`, by unzipping the `dist/site-packages.zip`.

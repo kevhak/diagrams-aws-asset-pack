@@ -22,14 +22,14 @@ else:
     AWS_ARROW_COLOR = "#000000"
 
 AWS_COLOR_SQUID = "#232F3E"
-AWS_COLOR_GRAY = "#7D8998"
-AWS_COLOR_NEBULA = "#C925D1"
-AWS_COLOR_ENDOR = "#7AA116"
-AWS_COLOR_SMILE = "#ED7100"
-AWS_COLOR_COSMOS = "#E7157B"
-AWS_COLOR_GALAXY = "#8C4FFF"
-AWS_COLOR_MARS = "#DD344C"
-AWS_COLOR_ORBIT = "#01A88D"
+AWS_COLOR_GRAY = "#7D8998" # (borders)
+AWS_COLOR_NEBULA = "#C925D1" # (blue replacement) Customer Enablement; Database; Developer Tools; Satellite
+AWS_COLOR_ENDOR = "#7AA116" # (green) Cloud Financial Management; Internet of Things; Storage
+AWS_COLOR_SMILE = "#ED7100" # (orange) Blockchain; Compute; Containers; Media Services; Quantum Technologies
+AWS_COLOR_COSMOS = "#E7157B" # (pink) Application Integration; Management & Governance
+AWS_COLOR_GALAXY = "#8C4FFF" # (purple) Analytics; Games; Networking & Content Delivery; Serverless
+AWS_COLOR_MARS = "#DD344C" # (red) Business Applications; Contact Center; Front-End Web & Mobile; Robotics; Security, Identity & Compliance
+AWS_COLOR_ORBIT = "#01A88D" # (turquoise) Artificial Intelligence; End User Computing; Migration & Modernization
 
 # https://www.graphviz.org/doc/info/attrs.html
 
