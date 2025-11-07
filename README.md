@@ -5,7 +5,7 @@
 This work-in-progress project is an "Asset Pack" that includes visual resources which modify the base Diagrams appearance to better align with guidelines.  
 
 - Icon images use the current AWS color palette (without gradients) and keep official squared corners.
-- Leverage [Graphviz attributes](https://www.graphviz.org/doc/info/attrs.html) on Edges, Nodes, Clusters, and Graphs to better match styles and colors, including an experimental dark mode.
+- Leverage [Graphviz attributes](https://www.graphviz.org/doc/info/attrs.html) on Edges, Nodes, Clusters, and Graphs to better match styles and colors, including generating dark mode diagrams.
 
 The Diagrams [AWS node class](https://diagrams.mingrammer.com/docs/nodes/aws) to AWS icon mapping is found in `aws_icons_mapping.csv`.  Some images used by Diagrams are no longer in the most recent AWS architecture icons (Release 21-2025.07.31) and were sourced from older versions.
 
@@ -13,9 +13,27 @@ The Diagrams [AWS node class](https://diagrams.mingrammer.com/docs/nodes/aws) to
 
 This projects uses [`uv`](https://docs.astral.sh/uv/getting-started/installation/), an extremely fast Python package and project manager, written in Rust, and features of the `uvx` command for running commands in isolated Python environments.
 
+## Install
+
+First review the HTML comparison page (`image_comparison.html`) to see the changes.  Then overlay the updated images into your `.venv`, by unzipping the `dist/site-packages.zip`.
+
+  ```shell
+  unzip -o dist/site-packages.zip -d "$(python -c "import site; print(site.getsitepackages()[0])")"
+  ```
+
+Copy `examples\aws.py` to where your diagram scripts are located.  You can either modify the original source to `import aws` first or run a command that automatically updates the diagram style.
+
+  ```shell
+  uv run python -c "import aws; exec(open('clustered_web_services.py').read())"
+  ```
+
+The Python source for "Clustered Web Services" from the Diagrams [Examples](https://diagrams.mingrammer.com/docs/getting-started/examples#clustered-web-services) page run after this technique in enhanced without making source code changes.
+
+![Clustered Web Services](/examples/clustered_web_services.png)
+
 ## Examples
 
-To reproduce these example images, run commands from the `examples` directory.
+The example below are updated to `import aws` and use features like `AWS_DARK` or `with VPCCluster():`.  To reproduce these example images, run commands from the `examples` directory.
 
 ---
 
@@ -44,14 +62,6 @@ Updated to use this asset pack (`uv run ec2_to_s3_updated.py`).
 Alternate version using dark mode (`AWS_DARK=1 uv run ec2_to_s3_updated.py`).
 
 ![EC2 to S3 Connection Architecture (updated)](/examples/ec2_to_s3_connection_architecture_(updated,_dark).png)
-
-## Install
-
-First review the HTML comparison page (`image_comparison.html`) to see the changes.  Then overlay the updated images into your `.venv`, by unzipping the `dist/site-packages.zip`.
-
-  ```shell
-  unzip -o dist/site-packages.zip -d "$(python -c "import site; print(site.getsitepackages()[0])")"
-  ```
 
 ## Amazon Q Developer CLI
 

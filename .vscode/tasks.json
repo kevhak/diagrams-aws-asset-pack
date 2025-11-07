@@ -1,0 +1,10 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "bandit",
+			"type": "shell",
+			"command": "uvx bandit -c pyproject.toml -r ."
+		},
+	]
+}

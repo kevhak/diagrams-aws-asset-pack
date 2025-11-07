@@ -1,14 +1,26 @@
 [project]
 name = "diagrams-aws-asset-pack"
-version = "0.6.0"
+version = "0.7.0"
 description = "Replace AWS icons in diagrams Python package with updated AWS Icons"
 readme = "README.md"
+authors = [
+  {name = "Kevin Hakanson", email = "kevhak@amazon.com"},
+]
 requires-python = ">=3.11"
 dependencies = [
     "diagrams>=0.24.4",
     "pillow>=11.3.0",
 ]
 
+[project.urls]
+Repository = "https://github.com/kevhak/diagrams-aws-asset-pack.git"
+
 # https://docs.astral.sh/ruff/settings/
+[tool.ruff]
+line-length = 88
+
 [tool.ruff.lint]
 extend-select = ["I"]
+
+[tool.bandit]
+exclude_dirs = [".venv"]

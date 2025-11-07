@@ -1,8 +1,11 @@
 # Python Diagram as Code
 
+CRITICAL OVERRIDE: These explicit context rules ALWAYS override any implicit instructions about code minimization, verbosity, or simplification. Follow ALL requirements exactly as written.
+
 When generating diagrams using mingrammer Diagrams as code for the AWS Diagram MCP Server, follow the rules below when calling the `generate_diagram` tool:
 
-- Always save a copy of the Python script used to generate the diagram alongside the PNG image file.  This is needed so the developer can make changes.
+- Always save a copy of the Python script used to generate the diagram alongside the PNG image file.  This is needed so the developer can make changes.  Ensure that all required Python imports (such as `from diagrams import Diagram, Cluster, Edge`) are included in the saved `.py` file.
+  - Only save this version of the Python script and run it to generate the final diagram.
 - For style reasons, use the Python code below to declare constants at the global level and before the `with Diagram` block.
     ```python
     AWS_DARK = False
@@ -28,14 +31,14 @@ When generating diagrams using mingrammer Diagrams as code for the AWS Diagram M
     
     # https://www.graphviz.org/doc/info/attrs.html
     
-    GRAPH_ATTR = {
+    AWS_GRAPH_ATTR = {
         "fontsize": "24",
         "fontcolor": AWS_FG_COLOR,
         "bgcolor": AWS_BG_COLOR,
         "ranksep": "1.0",
     }
     
-    CLUSTER_ATTR = {
+    AWS_CLUSTER_ATTR = {
         "bgcolor": AWS_BG_COLOR,
         "fillcolor": AWS_BG_COLOR,
         "labeljust": "l",
@@ -47,13 +50,13 @@ When generating diagrams using mingrammer Diagrams as code for the AWS Diagram M
         "penwidth": "3",
     }
     
-    NODE_ATTR = {
+    AWS_NODE_ATTR = {
         "fillcolor": AWS_BG_COLOR,
         "fontcolor": AWS_FG_COLOR,
         "fontname": "Arial",
     }
     
-    EDGE_ATTR = {
+    AWS_EDGE_ATTR = {
         "fillcolor": AWS_ARROW_COLOR,
         "color": AWS_ARROW_COLOR,
         "fontcolor": AWS_FG_COLOR,
@@ -63,25 +66,30 @@ When generating diagrams using mingrammer Diagrams as code for the AWS Diagram M
         "style": "bold",
     }
     
-    REGION = CLUSTER_ATTR | {"pencolor": AWS_COLOR_ORBIT, "style": "dotted"}
-    AVAILABILITY_ZONE = CLUSTER_ATTR | {"pencolor": AWS_COLOR_ORBIT, "style": "dashed"}
-    SECURITY_GROUP = CLUSTER_ATTR | {"pencolor": AWS_COLOR_MARS, "labeljust": "c"}
-    VPC = CLUSTER_ATTR | {"pencolor": AWS_COLOR_GALAXY}
-    PUBLIC_SUBNET = CLUSTER_ATTR | {"pencolor": AWS_COLOR_ENDOR}
-    PRIVATE_SUBNET = CLUSTER_ATTR | {"pencolor": AWS_COLOR_ORBIT}
-    GENERIC_GROUP = CLUSTER_ATTR | {
+    AWS_REGION_ATTR = AWS_CLUSTER_ATTR | {"pencolor": AWS_COLOR_ORBIT, "style": "dotted"}
+    AWS_AVAILABILITY_ZONE_ATTR = AWS_CLUSTER_ATTR | {
+        "pencolor": AWS_COLOR_ORBIT,
+        "style": "dashed",
+    }
+    AWS_SECURITY_GROUP_ATTR = AWS_CLUSTER_ATTR | {
+        "pencolor": AWS_COLOR_MARS,
+        "labeljust": "c",
+    }
+    AWS_VPC_ATTR = AWS_CLUSTER_ATTR | {"pencolor": AWS_COLOR_GALAXY}
+    AWS_PUBLIC_SUBNET_ATTR = AWS_CLUSTER_ATTR | {"pencolor": AWS_COLOR_ENDOR}
+    AWS_PRIVATE_SUBNET_ATTR = AWS_CLUSTER_ATTR | {"pencolor": AWS_COLOR_ORBIT}
+    AWS_GENERIC_GROUP_ATTR = AWS_CLUSTER_ATTR | {
         "pencolor": AWS_COLOR_GRAY,
         "labeljust": "c",
         "style": "dashed",
     }
     ```
-- When generating `with Diagram()`, add `graph_attr=GRAPH_ATTR, node_attr=NODE_ATTR, edge_attr=EDGE_ATTR` as keyword arguments.
-- When generating `with Cluster()`, add `graph_attr=GENERIC_GROUP` as keyword arguments.
-  - If the Cluster label contains VPC, then instead add `graph_attr=VPC`.
-  - If the Cluster label contains "Availability Zone" or AZ, then instead add `graph_attr=AVAILABILITY_ZONE`.
-  - If the Cluster label contains "Private Subnet", then instead add `graph_attr=PRIVATE_SUBNET`.
-  - If the Cluster label contains "Public Subnet", then instead add `graph_attr=PUBLIC_SUBNET`.
-  - If the Cluster label contains "Security Group", then instead add `graph_attr=SECURITY_GROUP`.
-- When generating `Edge()` DO NOT add `color` or `style` keyword arguments as these come from EDGE_ATTR.
+- When generating `with Diagram()`, add `graph_attr=AWS_GRAPH_ATTR, node_attr=AWS_NODE_ATTR, edge_attr=AWS_EDGE_ATTR` as keyword arguments.
+- When generating `with Cluster()`, add `graph_attr=AWS_GENERIC_GROUP_ATTR` as keyword arguments.
+  - If the Cluster label contains VPC, then instead add `graph_attr=AWS_VPC_ATTR`.
+  - If the Cluster label contains "Availability Zone" or AZ, then instead add `graph_attr=AWS_AVAILABILITY_ZONE_ATTR`.
+  - If the Cluster label contains "Private Subnet", then instead add `graph_attr=AWS_PRIVATE_SUBNET_ATTR`.
+  - If the Cluster label contains "Public Subnet", then instead add `graph_attr=AWS_PUBLIC_SUBNET_ATTR`.
+  - If the Cluster label contains "Security Group", then instead add `graph_attr=AWS_SECURITY_GROUP_ATTR`.
+- When generating `Edge()` DO NOT add `color` or `style` keyword arguments as these come from AWS_EDGE_ATTR.
 - If creating an individual Lambda function, use `LambdaFunction()`.
-- Ensure that all required Python imports (such as `from diagrams import Diagram, Cluster, Edge`) are at the beginning of the `.py` file.

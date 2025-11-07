@@ -66,7 +66,7 @@ with open("aws_icons_mapping.csv", "r") as f:
             if aws_file.endswith("_Dark.svg") or aws_file.endswith("_Dark_64.svg"):
                 html += '<td style="background-color: black; color: white">'
             else:
-                html += '<td>'
+                html += "<td>"
             html += f'<img src="assets/{aws_file}" alt="{aws_file}" onerror="this.style.display=\'none\'"><br>{get_image_dims(f"assets/{aws_file}")}'
 
         html += "</td>\n                "
@@ -76,7 +76,7 @@ with open("aws_icons_mapping.csv", "r") as f:
             if diagrams_file.endswith("-dark.png"):
                 html += '<td style="background-color: black; color: white">'
             else:
-                html += '<td>'
+                html += "<td>"
             html += f'<img src="resources/aws/{module_path}/{diagrams_file}" alt="{diagrams_file}" onerror="this.style.display=\'none\'"><br>{get_image_dims(f"resources/aws/{module_path}/{diagrams_file}")}</td>'
 
         html += "            </tr>\n"
