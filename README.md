@@ -63,9 +63,9 @@ Alternate version using dark mode (`AWS_DARK=1 uv run ec2_to_s3_updated.py`).
 
 ![EC2 to S3 Connection Architecture (updated)](/examples/ec2_to_s3_connection_architecture_(updated,_dark).png)
 
-## Amazon Q Developer CLI
+## Kiro CLI
 
-If you generate diagrams using the AWS Diagram MCP Server, an `.amazonq/cli-agents/python-diagrams.json` custom agent references `.amazonq/rules/python-diagrams.md` context for additional instructions creating diagrams.
+If you generate diagrams using the AWS Diagram MCP Server, an `.kiro/agents/python-diagrams.json` custom agent references `.kiro/steering/python-diagrams.md` context for additional instructions creating diagrams.
 
 Note: When the AWS Diagram MCP Server is runs, it uses the .venv packages.
 

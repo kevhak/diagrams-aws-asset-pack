@@ -22,13 +22,19 @@
   ],
   "toolAliases": {},
   "allowedTools": [
-    "fs_read",
+    "read",
     "@awslabs.aws-diagram-mcp-server"
   ],
   "resources": [
-    "file://.amazonq/rules/python-diagrams.md"
+    "file://.kiro/steering/python-diagrams.md"
   ],
   "hooks": {},
-  "toolsSettings": {},
+  "toolsSettings": {
+    "write": {
+      "allowedPaths": [
+        "generated-diagrams/**"
+      ]
+    }
+  },
   "useLegacyMcpJson": false
 }
